@@ -1,23 +1,21 @@
 package com.GameClass;
 
 public class TicTacToeGame {
-	public static char[] board = new char[10];
+	private char[] board = new char[10];
 
 	public static void main(String args[]) {
 
-		TicTacToeGame.useCase1();
+		TicTacToeGame tictactoe = new TicTacToeGame();
+		tictactoe.initBoard();
 
 	}
 
-	public static void useCase1() {
+	public void initBoard() {
 
 		for (int i = 0; i < board.length; i++) {
 			board[i] = ' ';
 		}
-		for (int i = 0; i < board.length; i++) {
-			
-			System.out.println(board[i]);
-		}
+		
 	}
 
 }
