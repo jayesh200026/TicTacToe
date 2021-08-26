@@ -18,8 +18,9 @@ public class TicTacToeGame {
 
 		TicTacToeGame tictactoe = new TicTacToeGame();
 		tictactoe.initBoard();
-		// tictactoe.playerLetter();
-		tictactoe.showBoard();
+		//tictactoe.playerLetter();
+		//tictactoe.showBoard();
+		tictactoe.userMove();
 
 	}
 
@@ -79,6 +80,37 @@ public class TicTacToeGame {
 			System.out.println("----------");
 			}
 		}
+	
+	
+	
+	/**
+	 * Asking user to make a move and validating if its a valid move or not.
+	 */
+	public void userMove() {
+		Scanner r=new Scanner(System.in);
+		int index;
+		int flag=1;
+		do
+		{
+			System.out.println("Enter the index between 1 to 9 to which you wanna move");
+			index=r.nextInt();
+			if(index>9 || index <0) {
+				System.out.println("Invalid index.Choose between 1 to 9");
+				flag=0;
+			}
+			
+			if(board[index]==' ') {
+				System.out.println("Index is free and you can make move");
+				
+			}
+			else {
+				System.out.println("Index is full and you cannot make move to that index");
+				
+			}
+		}while(flag==0);
+		
+		
+	}
 
 	}
 
