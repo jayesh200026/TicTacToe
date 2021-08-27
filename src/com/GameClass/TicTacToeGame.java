@@ -11,8 +11,8 @@ import java.util.Scanner;
 
 public class TicTacToeGame {
 	private char[] board = new char[10];
-	private String player1;
-	private String player2; // computer
+	private char player1;
+	private char player2; // computer
 
 	public static void main(String args[]) {
 
@@ -46,13 +46,15 @@ public class TicTacToeGame {
 		do {
 		System.out.println("Choose your letter.I.e X or O");
 		Scanner r = new Scanner(System.in);
-		player1 = r.nextLine();
-		if (player1.equals("X")) {
-			player2 = "O";
+		player1 = r.next().charAt(0);
+		if (player1=='X' || player1=='x') {
+			player1='X';
+			player2 = 'O';
 			flag=1;
 		} 
-		else if (player1.equals("O")) {
-			player2 = "X";
+		else if (player1=='O' || player1=='o') {
+			player1='O';
+			player2 = 'X';
 			flag=1;
 		} 
 		else {
@@ -70,23 +72,13 @@ public class TicTacToeGame {
 	 *Displaying the board in 3*3 manner.
 	 */
 	public void showBoard() {
-		int count = 1;
-		while (count!=10) {
-			for (int i = 1; i <= 3; i++) {
-				System.out.print(board[count]);
-				if (i % 3 == 0) {
-					count++;
-					System.out.println();
-					break;
-				}
-				count++;
-				System.out.print(" | ");
-			}
-			/*if(count==10) {
-				break;
-			}*/
-			System.out.println("----------");
-			}
+		
+		System.out.println(board[1]+ " | "+board[2]+" | "+board[3]);
+		System.out.println("-----------");
+		System.out.println(board[4]+ " | "+board[5]+" | "+board[6]);
+		System.out.println("-----------");
+		System.out.println(board[7]+ " | "+board[8]+" | "+board[9]);
+		
 		}
 	
 	
@@ -114,7 +106,7 @@ public class TicTacToeGame {
 			
 			if(board[index]==' ') {
 				System.out.println("Index is free and you can make move");
-				board[index]=player1.toCharArray()[0];//TODO make player1 and player2 char.
+				board[index]=player1;//TODO make player1 and player2 char.
 				
 				flag=1;
 			}
