@@ -71,7 +71,7 @@ public class TicTacToeGame {
 	 */
 	public void showBoard() {
 		int count = 1;
-		while (count !=10) {
+		while (count!=10) {
 			for (int i = 1; i <= 3; i++) {
 				System.out.print(board[count]);
 				if (i % 3 == 0) {
@@ -82,9 +82,9 @@ public class TicTacToeGame {
 				count++;
 				System.out.print(" | ");
 			}
-			if(count==10) {
+			/*if(count==10) {
 				break;
-			}
+			}*/
 			System.out.println("----------");
 			}
 		}
@@ -103,17 +103,19 @@ public class TicTacToeGame {
 			
 			System.out.println("Enter the index between 1 to 9 to which you wanna move");
 			index=r.nextInt();
-			if(index>9 || index <0) {
+			if(index>9 || index <=0) {
 				System.out.println("Invalid index.Choose between 1 to 9");
 				flag=0;
 			}
-			else
+			else {
 				flag=1;
+			}
 			if(flag !=0) {
 			
 			if(board[index]==' ') {
-				board[index]=player1.toCharArray()[0];
 				System.out.println("Index is free and you can make move");
+				board[index]=player1.toCharArray()[0];//TODO make player1 and player2 char.
+				
 				flag=1;
 			}
 			else {
