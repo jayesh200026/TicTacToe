@@ -13,6 +13,7 @@ public class TicTacToeGame {
 	private char[] board = new char[10];
 	private char player1;
 	private char player2; // computer
+	private char turn=' ';
 
 	public static void main(String args[]) {
 
@@ -22,6 +23,7 @@ public class TicTacToeGame {
 		tictactoe.showBoard();
 		tictactoe.userMove();
 		tictactoe.showBoard();
+		tictactoe.getToss();
 
 	}
 
@@ -117,6 +119,30 @@ public class TicTacToeGame {
 			}
 		}while(flag==0);
 		
+		
+	}
+	
+	public void getToss() {
+		System.out.println("Head or Tail\n 1 for Head\n 0 for Tail");
+		Scanner r=new Scanner(System.in);
+		int tossCall=r.nextInt();
+		int tossResult= (int) (Math.floor(Math.random()*10) %2);
+		if(tossCall==tossResult)
+		{
+			System.out.println("You have won the toss");
+			turn='p';
+			userMove();
+		}
+		else {
+			System.out.println("You have loss the toss.Computer will make the firt move");
+			turn='c';
+			computerMove();
+			
+		}
+		
+	}
+
+	private void computerMove() {
 		
 	}
 	
