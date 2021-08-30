@@ -20,11 +20,14 @@ public class TicTacToeGame {
 		TicTacToeGame tictactoe = new TicTacToeGame();
 		tictactoe.initBoard();
 		tictactoe.playerLetter();
-		tictactoe.showBoard();
-		tictactoe.userMove();
-		tictactoe.showBoard();
 		tictactoe.getToss();
-
+		tictactoe.showBoard();
+		//tictactoe.userMove();
+		//tictactoe.showBoard();
+		//tictactoe.getToss();
+		//char win=tictactoe.isWins();
+		//System.out.println(win);
+		tictactoe.checkWinner();
 	}
 
 	/**
@@ -34,8 +37,14 @@ public class TicTacToeGame {
 	public void initBoard() {
 
 		for (int i = 0; i < board.length; i++) {
-			board[i] = ' ';
+			if(i%2==0) {
+				board[i] = 'O';
+			}
+			else {
+				board[i] = 'X';
+			}
 		}
+		
 
 	}
 
@@ -142,9 +151,105 @@ public class TicTacToeGame {
 		
 	}
 
-	private void computerMove() {
+	public void computerMove() {
 		
 	}
+	
+	/**
+	 * @return X if user wins,returns O if computer wins,returns t if its a tie,returns n if no winner
+	 * and empty space available.
+	 */
+	public char isWins() {
+		String combination=null;
+		int i,j;
+		for(i=1;i<=9;i++)
+		{
+			switch(i)
+			{
+			case 1:
+					combination="" + board[1] + board[2] + board[3];
+					break;
+			case 2:
+					combination="" + board[4] + board[5] + board[6];
+					break;
+			case 3:
+					combination="" + board[7] + board[8] + board[9];
+					break;
+			case 4:
+					combination="" + board[1] + board[4] + board[7];
+					break;
+			case 5:
+					combination="" + board[2] + board[5] + board[8];
+					break;
+			case 6:
+					combination="" + board[3] + board[6] + board[9];
+					break;
+			case 7:
+					combination="" + board[1] + board[5] + board[9];
+					break;
+			case 8:
+					combination="" + board[3] + board[5] + board[7];
+					break;
+					
+			}
+			if(combination.equals("XXX"))
+			{
+				return 'X';
+			}
+			else if(combination.equals("OOO")) {
+				return 'O';
+			}
+		}
+		for(j=1;j<=9;j++)
+		{
+			if(board[j]==' ') {
+				//return 'n';
+				break;
+			}
+		}
+		
+		if(j==10)
+		{
+			return 'T';
+		}
+		else
+			return 'N';
+		
+	}
+	
+	public void checkWinner() {
+		
+		char result = isWins();
+		
+		if(result == Character.toUpperCase(player1)) {
+			System.out.println("Congratulations.. You won the game");
+			
+		}
+		else if(result == Character.toUpperCase(player2))
+		{
+			System.out.println("Sorry you lost the game.. Better luck next time");
+		}
+		else if(result == 'T') {
+			System.out.println("Its a tie");
+		}
+		else if(result == 'N')
+		{
+			if(turn == 'p')
+			{
+				turn ='c';
+				
+			}
+			else
+			{
+				turn ='p';
+			}
+		}
+		
+	}
+	
+	
+	
+	
 	
 	
 
