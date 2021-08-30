@@ -20,14 +20,17 @@ public class TicTacToeGame {
 		TicTacToeGame tictactoe = new TicTacToeGame();
 		tictactoe.initBoard();
 		tictactoe.playerLetter();
-		tictactoe.getToss();
+		//tictactoe.getToss();
 		tictactoe.showBoard();
 		//tictactoe.userMove();
 		//tictactoe.showBoard();
 		//tictactoe.getToss();
 		//char win=tictactoe.isWins();
 		//System.out.println(win);
-		tictactoe.checkWinner();
+		//tictactoe.checkWinner();
+		tictactoe.computerMove();
+		tictactoe.showBoard();
+		//tictactoe.checkWinner();
 	}
 
 	/**
@@ -37,13 +40,9 @@ public class TicTacToeGame {
 	public void initBoard() {
 
 		for (int i = 0; i < board.length; i++) {
-			if(i%2==0) {
-				board[i] = 'O';
-			}
-			else {
-				board[i] = 'X';
-			}
+			board[i]=' ';
 		}
+		board[8]=board[1]='O';
 		
 
 	}
@@ -131,6 +130,9 @@ public class TicTacToeGame {
 		
 	}
 	
+	/**
+	 * Get toss and who wins the toss will get to make first move
+	 */
 	public void getToss() {
 		System.out.println("Head or Tail\n 1 for Head\n 0 for Tail");
 		Scanner r=new Scanner(System.in);
@@ -143,15 +145,106 @@ public class TicTacToeGame {
 			userMove();
 		}
 		else {
-			System.out.println("You have loss the toss.Computer will make the firt move");
+			System.out.println("You have loss the toss.Computer will make the first move");
 			turn='c';
 			computerMove();
 			
 		}
 		
 	}
+	/**
+	 * @return y if computer make next move and wins else returns n
+	 */
+	public char computerStratergy() {
+		
+		if((board[1]==' ') && (board[2]==board[3]) && (board[2]==player2) 
+				|| (board[4]==board[7]) && (board[4]==player2)
+				|| (board[5]==board[9]) && (board[5]==player2))
+		{
+			board[1]=player2;
+			return 'y';
+		}
+		else if((board[2]==' ') && (board[1]==board[3]) && (board[1]==player2) 
+				|| (board[5]==board[8]) && (board[5]==player2))
+		{
+			board[2]=player2;
+			return 'y';
+		}
+		else if((board[3]==' ') && (board[2]==board[1]) && (board[2]==player2) 
+				|| (board[6]==board[9]) && (board[6]==player2)
+				|| (board[5]==board[7]) && (board[5]==player2))
+		{
+			board[3]=player2;
+			return 'y';
+		}
+		else if((board[4]==' ') && (board[1]==board[7]) && (board[1]==player2) 
+				|| (board[5]==board[6]) && (board[6]==player2)) {
+			board[4]=player2;
+			return 'y';
+		}
+		else if((board[5]==' ') && (board[1]==board[9]) && (board[1]==player2) 
+				|| (board[3]==board[7]) && (board[3]==player2)
+				|| (board[2]==board[8]) && (board[2]==player2)
+				|| (board[4]==board[6]) && (board[4]==player2))
+		{
+			board[5]=player2;
+			return 'y';
+		}
+		else if((board[6]==' ') && (board[3]==board[9]) && (board[3]==player2) 
+				|| (board[4]==board[5]) && (board[4]==player2))
+		{
+			board[6]=player2;
+			return 'y';
+		}
+		if((board[7]==' ') && (board[1]==board[4]) && (board[1]==player2) 
+				|| (board[8]==board[9]) && (board[8]==player2)
+				|| (board[5]==board[3]) && (board[5]==player2))
+		{
+			board[7]=player2;
+			return 'y';
+		}
+		if((board[8]==' ') && (board[2]==board[5]) && (board[2]==player2) 
+				|| (board[7]==board[9]) && (board[7]==player2))
+		{
+			board[8]=player2;
+			return 'y';
+		}
+		if((board[9]==' ') && (board[1]==board[5]) && (board[1]==player2) 
+				|| (board[3]==board[6]) && (board[3]==player2)
+				|| (board[7]==board[8]) && (board[7]==player2))
+		{
+			board[9]=player2;
+			return 'y';
+		}
+		else
+		{
+			return 'n';
+		}
+		
+		
+		
+		
+	}
 
+	/**
+	 * First checks if it can win. If it can win with next move it makes that move else chooses random index between 1 to 9
+	 */
 	public void computerMove() {
+		System.out.println("Computer will make a move");
+		
+		char stratergyOut=computerStratergy();
+		if(stratergyOut=='n') {
+		
+		while(true) {
+		
+		int index= (int) (Math.floor(Math.random()*10) %9);
+		if(board[index+1]==' ') {
+			board[index+1]=player2;
+			break;
+		}
+			
+		}
+		}
 		
 	}
 	
@@ -217,6 +310,9 @@ public class TicTacToeGame {
 		
 	}
 	
+	/**
+	 * Checks winner i.e plaer1 or player2 or is it a tie or a normal play
+	 */
 	public void checkWinner() {
 		
 		char result = isWins();
