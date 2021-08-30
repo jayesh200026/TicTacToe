@@ -43,6 +43,7 @@ public class TicTacToeGame {
 			board[i]=' ';
 		}
 		
+		
 	}
 
 	/**
@@ -302,6 +303,7 @@ public class TicTacToeGame {
 	 */
 	public void computerMove() {
 		Boolean cornerResult=true;
+		Boolean centreResult=true;
 		System.out.println("Computer will make a move");
 		
 		char stratergyOut=computerStratergy();
@@ -310,6 +312,13 @@ public class TicTacToeGame {
 			cornerResult=cornerSelect();
 		}
 		if(! cornerResult) {
+			centreResult=centreSelect();
+			
+			
+		}
+		
+		if(! centreResult)
+		{
 			while(true) {
 				
 				int index= (int) (Math.floor(Math.random()*10) %9);
@@ -335,6 +344,16 @@ public class TicTacToeGame {
 		
 	}
 	
+	private Boolean centreSelect() {
+		if(board[5]==' ') {
+			board[5]=player2;
+			return true;
+		}
+		else 
+			return false;
+		
+	}
+
 	public Boolean cornerSelect() {
 		
 		int[] corners= {1,3,7,9};
@@ -346,8 +365,10 @@ public class TicTacToeGame {
 				return true;
 			}
 		}
+		
+		
 		return false;
-		// TODO Auto-generated method stub
+		
 		
 	}
 
