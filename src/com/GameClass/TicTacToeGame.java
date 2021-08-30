@@ -20,17 +20,8 @@ public class TicTacToeGame {
 		TicTacToeGame tictactoe = new TicTacToeGame();
 		tictactoe.initBoard();
 		tictactoe.playerLetter();
-		//tictactoe.getToss();
-		tictactoe.showBoard();
-		//tictactoe.userMove();
-		//tictactoe.showBoard();
-		//tictactoe.getToss();
-		//char win=tictactoe.isWins();
-		//System.out.println(win);
-		//tictactoe.checkWinner();
-		tictactoe.computerMove();
-		tictactoe.showBoard();
-		//tictactoe.checkWinner();
+		tictactoe.getToss();
+		
 	}
 
 	/**
@@ -116,6 +107,8 @@ public class TicTacToeGame {
 			if(board[index]==' ') {
 				System.out.println("Index is free and you can make move");
 				board[index]=player1;//TODO make player1 and player2 char.
+				showBoard();
+				checkWinner();
 				
 				flag=1;
 			}
@@ -156,71 +149,73 @@ public class TicTacToeGame {
 	 */
 	public char computerStratergy() {
 		
-		if((board[1]==' ') && (board[2]==board[3]) && (board[2]==player2) 
+		if((board[1]==' ') && ((board[2]==board[3]) && (board[2]==player2) 
 				|| (board[4]==board[7]) && (board[4]==player2)
-				|| (board[5]==board[9]) && (board[5]==player2))
+				|| (board[5]==board[9]) && (board[5]==player2)))
 		{
 			board[1]=player2;
 			return 'y';
 		}
-		else if((board[2]==' ') && (board[1]==board[3]) && (board[1]==player2) 
-				|| (board[5]==board[8]) && (board[5]==player2))
+		else if((board[2]==' ') && ((board[1]==board[3]) && (board[1]==player2) 
+				|| (board[5]==board[8]) && (board[5]==player2)))
 		{
 			board[2]=player2;
 			return 'y';
 		}
-		else if((board[3]==' ') && (board[2]==board[1]) && (board[2]==player2) 
+		else if((board[3]==' ') && ((board[2]==board[1]) && (board[2]==player2) 
 				|| (board[6]==board[9]) && (board[6]==player2)
-				|| (board[5]==board[7]) && (board[5]==player2))
+				|| (board[5]==board[7]) && (board[5]==player2)))
 		{
 			board[3]=player2;
 			return 'y';
 		}
-		else if((board[4]==' ') && (board[1]==board[7]) && (board[1]==player2) 
-				|| (board[5]==board[6]) && (board[6]==player2)) {
+		else if((board[4]==' ') && ((board[1]==board[7]) && (board[1]==player2) 
+				|| (board[5]==board[6]) && (board[6]==player2))) {
 			board[4]=player2;
 			return 'y';
 		}
-		else if((board[5]==' ') && (board[1]==board[9]) && (board[1]==player2) 
+		else if((board[5]==' ') && ((board[1]==board[9]) && (board[1]==player2) 
 				|| (board[3]==board[7]) && (board[3]==player2)
 				|| (board[2]==board[8]) && (board[2]==player2)
-				|| (board[4]==board[6]) && (board[4]==player2))
+				|| (board[4]==board[6]) && (board[4]==player2)))
 		{
 			board[5]=player2;
 			return 'y';
 		}
-		else if((board[6]==' ') && (board[3]==board[9]) && (board[3]==player2) 
-				|| (board[4]==board[5]) && (board[4]==player2))
+		else if((board[6]==' ') && ((board[3]==board[9]) && (board[3]==player2) 
+				|| (board[4]==board[5]) && (board[4]==player2)))
 		{
 			board[6]=player2;
 			return 'y';
 		}
-		else if((board[7]==' ') && (board[1]==board[4]) && (board[1]==player2) 
+		else if((board[7]==' ') && ((board[1]==board[4]) && (board[1]==player2) 
 				|| (board[8]==board[9]) && (board[8]==player2)
-				|| (board[5]==board[3]) && (board[5]==player2))
+				|| (board[5]==board[3]) && (board[5]==player2)))
 		{
 			board[7]=player2;
 			return 'y';
 		}
-		else if((board[8]==' ') && (board[2]==board[5]) && (board[2]==player2) 
-				|| (board[7]==board[9]) && (board[7]==player2))
+		else if((board[8]==' ') && ((board[2]==board[5]) && (board[2]==player2) 
+				|| (board[7]==board[9]) && (board[7]==player2)))
 		{
 			board[8]=player2;
 			return 'y';
 		}
-		else if((board[9]==' ') && (board[1]==board[5]) && (board[1]==player2) 
+		else if((board[9]==' ') && ((board[1]==board[5]) && (board[1]==player2) 
 				|| (board[3]==board[6]) && (board[3]==player2)
-				|| (board[7]==board[8]) && (board[7]==player2))
+				|| (board[7]==board[8]) && (board[7]==player2)))
 		{
 			board[9]=player2;
 			return 'y';
 		}
 		else if(canOpponentWin() == 'y')
 		{
+			System.out.println("You dont have chance to block");
 			return 'y';
 		}
 		else
 		{
+			System.out.println("cannot win with this move. Choose corners");
 			return 'n';
 		}
 		
@@ -234,66 +229,68 @@ public class TicTacToeGame {
 	 */
 	public char canOpponentWin() {
 		
-		if((board[1]==' ') && (board[2]==board[3]) && (board[2]==player1) 
+		if((board[1]==' ') && ((board[2]==board[3]) && (board[2]==player1)
 				|| (board[4]==board[7]) && (board[4]==player1)
-				|| (board[5]==board[9]) && (board[5]==player1))
+				|| (board[5]==board[9]) && (board[5]==player1)))
 		{
+			System.out.println("gggjvh");
 			board[1]=player2;
 			return 'y';
 		}
-		else if((board[2]==' ') && (board[1]==board[3]) && (board[1]==player1) 
-				|| (board[5]==board[8]) && (board[5]==player1))
+		else if((board[2]==' ') && ((board[1]==board[3]) && (board[1]==player1) 
+				|| (board[5]==board[8]) && (board[5]==player1)))
 		{
 			board[2]=player2;
 			return 'y';
 		}
-		else if((board[3]==' ') && (board[2]==board[1]) && (board[2]==player1) 
+		else if((board[3]==' ') && ((board[2]==board[1]) && (board[2]==player1) 
 				|| (board[6]==board[9]) && (board[6]==player1)
-				|| (board[5]==board[7]) && (board[5]==player1))
+				|| (board[5]==board[7]) && (board[5]==player1)))
 		{
 			board[3]=player2;
 			return 'y';
 		}
-		else if((board[4]==' ') && (board[1]==board[7]) && (board[1]==player1) 
-				|| (board[5]==board[6]) && (board[6]==player1)) {
+		else if((board[4]==' ') && ((board[1]==board[7]) && (board[1]==player1) 
+				|| (board[5]==board[6]) && (board[6]==player1))) {
 			board[4]=player2;
 			return 'y';
 		}
-		else if((board[5]==' ') && (board[1]==board[9]) && (board[1]==player1) 
+		else if((board[5]==' ') && ((board[1]==board[9]) && (board[1]==player1) 
 				|| (board[3]==board[7]) && (board[3]==player1)
 				|| (board[2]==board[8]) && (board[2]==player1)
-				|| (board[4]==board[6]) && (board[4]==player1))
+				|| (board[4]==board[6]) && (board[4]==player1)))
 		{
 			board[5]=player2;
 			return 'y';
 		}
-		else if((board[6]==' ') && (board[3]==board[9]) && (board[3]==player1) 
-				|| (board[4]==board[5]) && (board[4]==player2))
+		else if((board[6]==' ') && ((board[3]==board[9]) && (board[3]==player1) 
+				|| (board[4]==board[5]) && (board[4]==player1)))
 		{
 			board[6]=player2;
 			return 'y';
 		}
-		else if((board[7]==' ') && (board[1]==board[4]) && (board[1]==player1) 
+		else if((board[7]==' ') && ((board[1]==board[4]) && (board[1]==player1) 
 				|| (board[8]==board[9]) && (board[8]==player1)
-				|| (board[5]==board[3]) && (board[5]==player1))
+				|| (board[5]==board[3]) && (board[5]==player1)))
 		{
 			board[7]=player2;
 			return 'y';
 		}
-		else if((board[8]==' ') && (board[2]==board[5]) && (board[2]==player1) 
-				|| (board[7]==board[9]) && (board[7]==player1))
+		else if((board[8]==' ') && ((board[2]==board[5]) && (board[2]==player1) 
+				|| (board[7]==board[9]) && (board[7]==player1)))
 		{
 			board[8]=player2;
 			return 'y';
 		}
-		else if((board[9]==' ') && (board[1]==board[5]) && (board[1]==player1) 
+		else if((board[9]==' ') && ((board[1]==board[5]) && (board[1]==player1) 
 				|| (board[3]==board[6]) && (board[3]==player1)
-				|| (board[7]==board[8]) && (board[7]==player1))
+				|| (board[7]==board[8]) && (board[7]==player1)))
 		{
 			board[9]=player2;
 			return 'y';
 		}
 		else {
+			
 			return 'n';
 		}
 	}
@@ -329,21 +326,16 @@ public class TicTacToeGame {
 					
 				}
 		}
-		/*{
 		
-		while(true) {
+		showBoard();
+		checkWinner();
 		
-		int index= (int) (Math.floor(Math.random()*10) %9);
-		if(board[index+1]==' ') {
-			board[index+1]=player2;
-			break;
-		}
-			
-		}
-		}*/
 		
 	}
 	
+	/**
+	 * @return True if it can make move into centre else returns false
+	 */
 	private Boolean centreSelect() {
 		if(board[5]==' ') {
 			board[5]=player2;
@@ -354,6 +346,9 @@ public class TicTacToeGame {
 		
 	}
 
+	/**
+	 * @return returns true if computer can make move into corner else returns false
+	 */
 	public Boolean cornerSelect() {
 		
 		int[] corners= {1,3,7,9};
@@ -457,11 +452,14 @@ public class TicTacToeGame {
 			if(turn == 'p')
 			{
 				turn ='c';
+				computerMove();
 				
 			}
 			else
 			{
 				turn ='p';
+				userMove();
+				
 			}
 		}
 		
