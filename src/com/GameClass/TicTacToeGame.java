@@ -42,7 +42,8 @@ public class TicTacToeGame {
 		for (int i = 0; i < board.length; i++) {
 			board[i]=' ';
 		}
-		board[8]=board[1]='O';
+		
+		
 		
 
 	}
@@ -196,24 +197,28 @@ public class TicTacToeGame {
 			board[6]=player2;
 			return 'y';
 		}
-		if((board[7]==' ') && (board[1]==board[4]) && (board[1]==player2) 
+		else if((board[7]==' ') && (board[1]==board[4]) && (board[1]==player2) 
 				|| (board[8]==board[9]) && (board[8]==player2)
 				|| (board[5]==board[3]) && (board[5]==player2))
 		{
 			board[7]=player2;
 			return 'y';
 		}
-		if((board[8]==' ') && (board[2]==board[5]) && (board[2]==player2) 
+		else if((board[8]==' ') && (board[2]==board[5]) && (board[2]==player2) 
 				|| (board[7]==board[9]) && (board[7]==player2))
 		{
 			board[8]=player2;
 			return 'y';
 		}
-		if((board[9]==' ') && (board[1]==board[5]) && (board[1]==player2) 
+		else if((board[9]==' ') && (board[1]==board[5]) && (board[1]==player2) 
 				|| (board[3]==board[6]) && (board[3]==player2)
 				|| (board[7]==board[8]) && (board[7]==player2))
 		{
 			board[9]=player2;
+			return 'y';
+		}
+		else if(canOpponentWin() == 'y')
+		{
 			return 'y';
 		}
 		else
@@ -224,6 +229,72 @@ public class TicTacToeGame {
 		
 		
 		
+	}
+
+	public char canOpponentWin() {
+		
+		if((board[1]==' ') && (board[2]==board[3]) && (board[2]==player1) 
+				|| (board[4]==board[7]) && (board[4]==player1)
+				|| (board[5]==board[9]) && (board[5]==player1))
+		{
+			board[1]=player2;
+			return 'y';
+		}
+		else if((board[2]==' ') && (board[1]==board[3]) && (board[1]==player1) 
+				|| (board[5]==board[8]) && (board[5]==player1))
+		{
+			board[2]=player2;
+			return 'y';
+		}
+		else if((board[3]==' ') && (board[2]==board[1]) && (board[2]==player1) 
+				|| (board[6]==board[9]) && (board[6]==player1)
+				|| (board[5]==board[7]) && (board[5]==player1))
+		{
+			board[3]=player2;
+			return 'y';
+		}
+		else if((board[4]==' ') && (board[1]==board[7]) && (board[1]==player1) 
+				|| (board[5]==board[6]) && (board[6]==player1)) {
+			board[4]=player2;
+			return 'y';
+		}
+		else if((board[5]==' ') && (board[1]==board[9]) && (board[1]==player1) 
+				|| (board[3]==board[7]) && (board[3]==player1)
+				|| (board[2]==board[8]) && (board[2]==player1)
+				|| (board[4]==board[6]) && (board[4]==player1))
+		{
+			board[5]=player2;
+			return 'y';
+		}
+		else if((board[6]==' ') && (board[3]==board[9]) && (board[3]==player1) 
+				|| (board[4]==board[5]) && (board[4]==player2))
+		{
+			board[6]=player2;
+			return 'y';
+		}
+		else if((board[7]==' ') && (board[1]==board[4]) && (board[1]==player1) 
+				|| (board[8]==board[9]) && (board[8]==player1)
+				|| (board[5]==board[3]) && (board[5]==player1))
+		{
+			board[7]=player2;
+			return 'y';
+		}
+		else if((board[8]==' ') && (board[2]==board[5]) && (board[2]==player1) 
+				|| (board[7]==board[9]) && (board[7]==player1))
+		{
+			board[8]=player2;
+			return 'y';
+		}
+		else if((board[9]==' ') && (board[1]==board[5]) && (board[1]==player1) 
+				|| (board[3]==board[6]) && (board[3]==player1)
+				|| (board[7]==board[8]) && (board[7]==player1))
+		{
+			board[9]=player2;
+			return 'y';
+		}
+		else {
+			return 'n';
+		}
 	}
 
 	/**
