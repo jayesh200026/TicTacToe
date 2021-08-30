@@ -43,9 +43,6 @@ public class TicTacToeGame {
 			board[i]=' ';
 		}
 		
-		
-		
-
 	}
 
 	/**
@@ -231,6 +228,9 @@ public class TicTacToeGame {
 		
 	}
 
+	/**
+	 * @return y if computer blocks user from winning else returns n 
+	 */
 	public char canOpponentWin() {
 		
 		if((board[1]==' ') && (board[2]==board[3]) && (board[2]==player1) 
@@ -301,10 +301,26 @@ public class TicTacToeGame {
 	 * First checks if it can win. If it can win with next move it makes that move else chooses random index between 1 to 9
 	 */
 	public void computerMove() {
+		Boolean cornerResult=true;
 		System.out.println("Computer will make a move");
 		
 		char stratergyOut=computerStratergy();
-		if(stratergyOut=='n') {
+		if(stratergyOut=='n')
+		{
+			cornerResult=cornerSelect();
+		}
+		if(! cornerResult) {
+			while(true) {
+				
+				int index= (int) (Math.floor(Math.random()*10) %9);
+				if(board[index+1]==' ') {
+					board[index+1]=player2;
+					break;
+				}
+					
+				}
+		}
+		/*{
 		
 		while(true) {
 		
@@ -315,10 +331,26 @@ public class TicTacToeGame {
 		}
 			
 		}
-		}
+		}*/
 		
 	}
 	
+	public Boolean cornerSelect() {
+		
+		int[] corners= {1,3,7,9};
+		for(int i=0;i<corners.length;i++)
+		{
+			if(board[corners[i]]==' ')
+			{
+				board[corners[i]]=player2;
+				return true;
+			}
+		}
+		return false;
+		// TODO Auto-generated method stub
+		
+	}
+
 	/**
 	 * @return X if user wins,returns O if computer wins,returns t if its a tie,returns n if no winner
 	 * and empty space available.
